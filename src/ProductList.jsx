@@ -7,7 +7,9 @@ import {addItem} from './CartSlice';
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    const [addedToCart, setAddedToCart] = useState({}); // State to track if a product has been added to the cart
+    const [addedToCart, setAddedToCart] = useState({});
+    const dispatch = useDispatch();
+     // State to track if a product has been added to the cart
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -262,7 +264,11 @@ function ProductList({ onHomeClick }) {
                     ...prevstate,[plant.name]:true,
                 })
             )
-                
+     
+    const calculateTotalQuantity = () =>{
+        return CartItem ? CartItem.reduce((total, item) => total + item.quantity,0):0;
+    }
+   
             
 
     };
